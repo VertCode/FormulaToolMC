@@ -61,6 +61,14 @@ export default function Home() {
         return answers;
     }
 
+    function formatAnswer(answer: Answer) {
+        // First we convert answer.answer to a nice string (1000 -> 1,000)
+        const answerString = answer.answer.toLocaleString();
+
+        // Then we return the formatted string
+        return `${answer.level} = ${answerString}`;
+    }
+
     return (
         <>
             <Head>
@@ -107,7 +115,7 @@ export default function Home() {
                                 rows={10}
                                 cols={50}
                                 className="bg-gray-800 text-white p-2 rounded-md resize-none h-full"
-                                value={answers.map((answer) => `${answer.level} = ${answer.answer}`).join('\n')}
+                                value={answers.map((answer) => formatAnswer(answer)).join("\n")}
                                 readOnly
                             />
                         </div>
